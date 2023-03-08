@@ -1,12 +1,13 @@
-class BarChartWLine{
+class StackChartWLine{
     constructor({
         _height=300,
         _width=300,
         _posX=50,
-        _posY=375,
+        _posY=775,
         _data,
         _valueX,
         _valueY,
+        _valueT,
         _tickCount=10,
         _showLabels=1
     })
@@ -15,9 +16,10 @@ class BarChartWLine{
         this.width = _width  
         this.posX = _posX  
         this.posY = _posY  
-        this.data = _data  
+        this.data = _data 
         this.valueX = _valueX
-        this.valueY = _valueY
+        this.valueY = _valueY 
+        this.valueT = _valueT
         this.margin = 20
         this.gap = 10
         this.tickCount = _tickCount
@@ -26,6 +28,10 @@ class BarChartWLine{
         this.bWidth = (this.width - (this.margin*2) - ((this.data.getRowCount() -1)*this.gap))/this.data.getRowCount() 
 
         this.max = this.maxC();
+
+        // this.stacks = ["Motorway","Single",]
+
+        // this.palette=[]
 
     }
 
@@ -41,6 +47,7 @@ class BarChartWLine{
         this.labels()
         this.maxC()
         this.hLabel()
+        this.legend()
         pop()
     }
 
@@ -59,16 +66,29 @@ class BarChartWLine{
     }
     
     bars(){
+        // translate(this.margin,0)
+        push()
         for(let x = 0; x<this.data.getRowCount(); x++){
-            noStroke()
-            let gap = x * (this.gap + this.bWidth)
-            let palette = ["#0FA3B1","#4357AD","#F03A47","#F1C40F","#00CC66"]
-            let colorNum = x % palette.length
-            fill(color(palette[colorNum]))
-            let barH = int(-this.data.rows[x].obj[this.valueY])
-            rect(gap+this.gap,0,this.bWidth,this.scaler(barH))
+            push()
+            for(let y=0; y<this.valueY.length;y++){
+                let current = this.valueY[y]
+                let barH = -this.data.rows[x].obj[current]
+                // console.log(this.valueY)
+                let gap = x * (this.gap + this.bWidth)
+                let palette = ["#0FA3B1","#4357AD","#F03A47","#F1C40F","#00CC66"]
+                let colorNum = y % palette.length
+                fill(color(palette[colorNum]))
+                // console.log(this.stacks.length)
+                stroke(255)
+                strokeWeight(1)
+                rect((gap+this.gap),0,this.bWidth,this.scaler(barH))
+                translate(0,this.scaler(barH))
+            }
+            pop()
         }
+        pop()
     }
+
 
     ticks(){
         let tickGap = this.height /(this.tickCount)
@@ -81,8 +101,8 @@ class BarChartWLine{
     maxC(){
         let maxi =0;
         for(let x = 0; x<this.data.getRowCount(); x++){
-            if (int(this.data.rows[x].obj[this.valueY])>maxi){
-                maxi = int(this.data.rows[x].obj[this.valueY]);
+            if (int(this.data.rows[x].obj[this.valueT])>maxi){
+                maxi = int(this.data.rows[x].obj[this.valueT]);
             }
         }
         return(maxi)
@@ -117,6 +137,23 @@ class BarChartWLine{
             text(years,0,0)
             pop()
             }
+        }
+    }
+
+    legend(){
+        for(let x=0;x<this.valueY.length;x++){
+            let palette = ["#0FA3B1","#4357AD","#F03A47","#F1C40F","#00CC66"]
+            let colorNum = x % palette.length
+            let legend = this.valueY[x]
+            fill(color(palette[colorNum]))
+            stroke(255)
+            strokeWeight(1)
+            translate(0,-30)
+            ellipse(this.width,0,15,15)
+            // console.log(legend)
+            noStroke()
+            textAlign(LEFT,CENTER)
+            text(legend,this.width+15,0)
         }
     }
 
