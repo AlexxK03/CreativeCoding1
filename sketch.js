@@ -16,7 +16,7 @@ function tidy(){
 
 
 function setup(){
-    createCanvas(900, 900)
+    createCanvas(900, 1300)
     background(0)
     angleMode(DEGREES)
     tidy()
@@ -65,13 +65,20 @@ function setup(){
         _valueY:["Motorway","Single"],
         _valueT:"total",
         _tickCount:10,
-        _showLbels:1}))    
-    
+        _showLabels:1}))    
 
+        charts.push(new StackChartWLine({
+            _data:table,
+            _valueX:"Year",
+            _valueY:["Motorway","Single"],
+            _valueT:"total",
+            })) 
+    
 }
 
 function draw(){
     background(0)
+    noLoop()
     
     for(let x=0; x<charts.length; x++){
      charts[x].render()

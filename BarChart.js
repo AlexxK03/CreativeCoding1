@@ -7,6 +7,7 @@ class BarChart{
         _data,
         _valueX,
         _valueY,
+        _title = "National Route Length over all authorities in Kilometers",
         _tickCount=10,
         _showLabels=1
     })
@@ -18,6 +19,7 @@ class BarChart{
         this.data = _data  
         this.valueX = _valueX
         this.valueY = _valueY
+        this.title = _title
         this.margin = 20
         this.gap = 10
         this.tickCount = _tickCount
@@ -41,6 +43,7 @@ class BarChart{
         this.labels()
         this.maxC()
         this.hLabel()
+        this.title()
         pop()
     }
 
@@ -118,6 +121,13 @@ class BarChart{
             pop()
             }
         }
+    }
+
+    title(){
+        textSize(12)
+        fill(255)
+        textAlign(RIGHT,CENTER)  
+        text(this.title,this.height+50,200)
     }
 
     scaler(_num){

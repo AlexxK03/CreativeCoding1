@@ -3,7 +3,7 @@ class StackChartWLine{
         _height=300,
         _width=300,
         _posX=50,
-        _posY=775,
+        _posY=1175,
         _data,
         _valueX,
         _valueY,
@@ -48,6 +48,7 @@ class StackChartWLine{
         this.maxC()
         this.hLabel()
         this.legend()
+        this.line()
         pop()
     }
 
@@ -66,13 +67,13 @@ class StackChartWLine{
     }
     
     bars(){
-        // translate(this.margin,0)
         push()
         for(let x = 0; x<this.data.getRowCount(); x++){
             push()
             for(let y=0; y<this.valueY.length;y++){
                 let current = this.valueY[y]
                 let barH = -this.data.rows[x].obj[current]
+                let mean = -this.data.rows[x].obj.mean
                 // console.log(this.valueY)
                 let gap = x * (this.gap + this.bWidth)
                 let palette = ["#0FA3B1","#4357AD","#F03A47","#F1C40F","#00CC66"]
@@ -82,6 +83,7 @@ class StackChartWLine{
                 stroke(255)
                 strokeWeight(1)
                 rect((gap+this.gap),0,this.bWidth,this.scaler(barH))
+                // ellipse((gap+this.gap),0,this.bWidth,this.scaler(mean))
                 translate(0,this.scaler(barH))
             }
             pop()
@@ -89,6 +91,21 @@ class StackChartWLine{
         pop()
     }
 
+    line(){
+        for(let x=0; x<this.data.getRowCount();x++){
+            let gap = x * (this.gap + this.bWidth)
+            let mean = -this.data.rows[x].obj.mean
+            push()
+            fill(255,0,0)
+            // beginShape()
+            translate(gap+this.gap+(this.bWidth/2),this.scaler(mean))
+            // vertex(gap+this.gap+(this.bWidth/2),this.scaler(mean))
+            ellipse(0,0,10,10)
+            // endShape()
+            pop()
+
+        }
+    }
 
     ticks(){
         let tickGap = this.height /(this.tickCount)
