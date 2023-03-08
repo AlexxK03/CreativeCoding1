@@ -4,6 +4,7 @@ class HorizontalChart{
         _width=300,
         _posX=475,
         _posY=350,
+        _title = "National Route Length over all authorities in Kilometers",
         _data,
         _valueX,
         _valueY,
@@ -18,6 +19,7 @@ class HorizontalChart{
         this.data = _data  
         this.valueX = _valueX
         this.valueY = _valueY
+        this.title = _title
         this.margin = 20
         this.gap = 10
         this.tickCount = _tickCount
@@ -41,6 +43,7 @@ class HorizontalChart{
         this.labels()
         this.maxC()
         this.hLabel()
+        this.name()
         pop()
     }
 
@@ -121,6 +124,16 @@ class HorizontalChart{
                 pop()
             }
         }
+    }
+
+    name(){
+        textSize(12)
+        fill(255)
+        textAlign(LEFT,CENTER) 
+        push() 
+        translate(0,this.height/4)
+        text(this.title,0,0)
+        pop()
     }
 
     scaler(_num){

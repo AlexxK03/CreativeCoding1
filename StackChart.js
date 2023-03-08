@@ -5,6 +5,7 @@ class StackChart{
         _posX=50,
         _posY=775,
         _data,
+        _title = "National Route Length over all authorities in Kilometers",
         _valueX,
         _valueY,
         _valueT,
@@ -17,6 +18,7 @@ class StackChart{
         this.posX = _posX  
         this.posY = _posY  
         this.data = _data 
+        this.title = _title
         this.valueX = _valueX
         this.valueY = _valueY 
         this.valueT = _valueT
@@ -48,6 +50,7 @@ class StackChart{
         this.maxC()
         this.hLabel()
         this.legend()
+        this.name()
         pop()
     }
 
@@ -155,6 +158,18 @@ class StackChart{
             text(legend,this.width+15,0)
         }
     }
+
+    
+    name(){
+        textSize(12)
+        fill(255)
+        textAlign(LEFT,CENTER) 
+        push() 
+        translate(0,this.height/2.5)
+        text(this.title,0,0)
+        pop()
+    }
+
 
     scaler(_num){
         return map(_num,0,this.max,0,this.height)

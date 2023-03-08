@@ -5,6 +5,7 @@ class StackChartWLine{
         _posX=50,
         _posY=1175,
         _data,
+        _title = "National Route Length over all authorities in Kilometers",
         _valueX,
         _valueY,
         _valueT,
@@ -17,6 +18,7 @@ class StackChartWLine{
         this.posX = _posX  
         this.posY = _posY  
         this.data = _data 
+        this.title = _title
         this.valueX = _valueX
         this.valueY = _valueY 
         this.valueT = _valueT
@@ -49,6 +51,7 @@ class StackChartWLine{
         this.hLabel()
         this.legend()
         this.line()
+        this.name()
         pop()
     }
 
@@ -172,6 +175,16 @@ class StackChartWLine{
             textAlign(LEFT,CENTER)
             text(legend,this.width+15,0)
         }
+    }
+
+    name(){
+        textSize(12)
+        fill(255)
+        textAlign(LEFT,CENTER) 
+        push() 
+        translate(0,this.height/2)
+        text(this.title,0,0)
+        pop()
     }
 
     scaler(_num){

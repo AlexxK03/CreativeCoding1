@@ -43,7 +43,7 @@ class BarChart{
         this.labels()
         this.maxC()
         this.hLabel()
-        this.title()
+        this.name()
         pop()
     }
 
@@ -123,11 +123,14 @@ class BarChart{
         }
     }
 
-    title(){
+    name(){
         textSize(12)
         fill(255)
-        textAlign(RIGHT,CENTER)  
-        text(this.title,this.height+50,200)
+        textAlign(LEFT,CENTER) 
+        push() 
+        translate(0,this.height/4)
+        text(this.title,0,0)
+        pop()
     }
 
     scaler(_num){

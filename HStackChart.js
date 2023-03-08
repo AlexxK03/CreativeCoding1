@@ -5,6 +5,7 @@ class HStackChart{
         _posX=475,
         _posY=775,
         _data,
+        _title = "National Route Length over all authorities in Kilometers",
         _valueX,
         _valueY,
         _valueT,
@@ -19,6 +20,7 @@ class HStackChart{
         this.valueX=_valueX
         this.valueY=_valueY
         this.valueT=_valueT
+        this.title = _title
         this.margin = 20
         this.gap = 10
         this.tickCount = _tickCount
@@ -45,6 +47,7 @@ class HStackChart{
         this.maxC()
         this.hLabel()
         this.legend()
+        this.name()
         pop()
     }
 
@@ -156,6 +159,16 @@ class HStackChart{
             textAlign(LEFT,CENTER)
             text(legend,this.width+30,0)
         }
+    }
+
+    name(){
+        textSize(12)
+        fill(255)
+        textAlign(LEFT,CENTER) 
+        push() 
+        translate(0,this.height/2)
+        text(this.title,0,0)
+        pop()
     }
 
 
