@@ -67,12 +67,12 @@ function setup(){
         _tickCount:10,
         _showLabels:1}))    
 
-        charts.push(new StackChartWLine({
-            _data:table,
-            _valueX:"Year",
-            _valueY:["Motorway","Single"],
-            _valueT:"total",
-            })) 
+    charts.push(new StackChartWLine({
+         _data:table,
+        _valueX:"Year",
+        _valueY:["Motorway","Single"],
+        _valueT:"total",
+        _valueM:"mean"})) 
     
 }
 

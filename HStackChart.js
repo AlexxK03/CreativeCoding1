@@ -80,6 +80,7 @@ class HStackChart{
                 // console.log(this.stacks.length)
                 stroke(255)
                 strokeWeight(1)
+                //the same changes as the horizontal chart but in this case with the stack chart
                 rect(0,-this.gap-gap,-this.scaler(barH),-this.bWidth)
                 translate(-this.scaler(barH),0)
             }

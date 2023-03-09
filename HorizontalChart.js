@@ -69,6 +69,9 @@ class HorizontalChart{
             let colorNum = x % palette.length
             fill(color(palette[colorNum]))
             let barH = int(-this.data.rows[x].obj[this.valueY])
+
+            //switching around the values in comparison to the regular bar chart draws the bars this way. ex.the this.gap-gap calculation is now being draw as the height paramater rather than the width
+            
             rect(0,-this.gap-gap,-this.scaler(barH),-this.bWidth)
         }
     }

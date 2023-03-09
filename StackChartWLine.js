@@ -9,6 +9,7 @@ class StackChartWLine{
         _valueX,
         _valueY,
         _valueT,
+        _valueM,
         _tickCount=10,
         _showLabels=1
     })
@@ -22,6 +23,7 @@ class StackChartWLine{
         this.valueX = _valueX
         this.valueY = _valueY 
         this.valueT = _valueT
+        this.valueM =_valueM
         this.margin = 20
         this.gap = 10
         this.tickCount = _tickCount
@@ -44,7 +46,7 @@ class StackChartWLine{
         translate(this.posX, this.posY)
         this.horizontalAxis()
         this.vericalAxis()
-        this.bars()
+        // this.bars()
         this.ticks()
         this.labels()
         this.maxC()
@@ -76,7 +78,7 @@ class StackChartWLine{
             for(let y=0; y<this.valueY.length;y++){
                 let current = this.valueY[y]
                 let barH = -this.data.rows[x].obj[current]
-                let mean = -this.data.rows[x].obj.mean
+                // let mean = -this.data.rows[x].obj.mean
                 // console.log(this.valueY)
                 let gap = x * (this.gap + this.bWidth)
                 let palette = ["#0FA3B1","#4357AD","#F03A47","#F1C40F","#00CC66"]
@@ -95,19 +97,19 @@ class StackChartWLine{
     }
 
     line(){
+        push()
+        beginShape()
         for(let x=0; x<this.data.getRowCount();x++){
+            let mean = -this.data.rows[x].obj[this.valueM]
             let gap = x * (this.gap + this.bWidth)
-            let mean = -this.data.rows[x].obj.mean
-            push()
+            noStroke()
             fill(255,0,0)
-            // beginShape()
-            translate(gap+this.gap+(this.bWidth/2),this.scaler(mean))
-            // vertex(gap+this.gap+(this.bWidth/2),this.scaler(mean))
-            ellipse(0,0,10,10)
-            // endShape()
-            pop()
-
+            ellipse(gap+this.gap+(this.bWidth/2),this.scaler(mean),10,10)
+            fill(255)
+            vertex(gap+this.gap+(this.bWidth/2),this.scaler(mean))
+            endShape()
         }
+        pop()
     }
 
     ticks(){

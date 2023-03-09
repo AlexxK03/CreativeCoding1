@@ -71,9 +71,12 @@ class StackChart{
     bars(){
         // translate(this.margin,0)
         push()
+        //outer loop si looping through the the amount of rows in the table 
         for(let x = 0; x<this.data.getRowCount(); x++){
             push()
+            //then for each row in table it then loops through the valueY array which is stated in the constructor. In this case its looping thorugh the "single and motorway" columns in the table
             for(let y=0; y<this.valueY.length;y++){
+                //creating an array for the values in the array 
                 let current = this.valueY[y]
                 let barH = -this.data.rows[x].obj[current]
                 // console.log(this.valueY)
@@ -85,6 +88,7 @@ class StackChart{
                 stroke(255)
                 strokeWeight(1)
                 rect((gap+this.gap),0,this.bWidth,this.scaler(barH))
+                //translating after the first loop to draw the bard on top of eachother
                 translate(0,this.scaler(barH))
             }
             pop()
@@ -142,7 +146,9 @@ class StackChart{
         }
     }
 
+    //Creating a legend to read the stacked chart 
     legend(){
+        // creating the legend based on the value array so that it will still work if more values are being added to the chart
         for(let x=0;x<this.valueY.length;x++){
             let palette = ["#0FA3B1","#4357AD","#F03A47","#F1C40F","#00CC66"]
             let colorNum = x % palette.length
@@ -150,6 +156,7 @@ class StackChart{
             fill(color(palette[colorNum]))
             stroke(255)
             strokeWeight(1)
+            //each time the loop runs it -30 the height, drawing them at an equal distance from eachother
             translate(0,-30)
             ellipse(this.width,0,15,15)
             // console.log(legend)
