@@ -46,7 +46,7 @@ class StackChartWLine{
         translate(this.posX, this.posY)
         this.horizontalAxis()
         this.vericalAxis()
-        // this.bars()
+        this.bars()
         this.ticks()
         this.labels()
         this.maxC()
@@ -102,10 +102,14 @@ class StackChartWLine{
         for(let x=0; x<this.data.getRowCount();x++){
             let mean = -this.data.rows[x].obj[this.valueM]
             let gap = x * (this.gap + this.bWidth)
+            let palette = ["#0FA3B1","#241571","#F03A47","#F1C40F","#00CC66"]
+            let colorNum = x % palette.length
+            fill(color(palette[colorNum]))            
             noStroke()
-            fill(255,0,0)
             ellipse(gap+this.gap+(this.bWidth/2),this.scaler(mean),10,10)
-            fill(255)
+            stroke(1)
+            stroke(255)
+            noFill()
             vertex(gap+this.gap+(this.bWidth/2),this.scaler(mean))
             endShape()
         }
