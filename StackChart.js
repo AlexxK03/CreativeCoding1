@@ -78,6 +78,7 @@ class StackChart{
             for(let y=0; y<this.valueY.length;y++){
                 //creating an array for the values in the array 
                 let current = this.valueY[y]
+                console.log(current)
                 let barH = -this.data.rows[x].obj[current]
                 // console.log(this.valueY)
                 let gap = x * (this.gap + this.bWidth)
@@ -88,7 +89,9 @@ class StackChart{
                 stroke(255)
                 strokeWeight(1)
                 rect((gap+this.gap),0,this.bWidth,this.scaler(barH))
+                // console.log(this.scaler(barH))
                 //translating after the first loop to draw the bard on top of eachother
+                console.log(this.data.rows[y].obj)
                 translate(0,this.scaler(barH))
             }
             pop()
@@ -172,7 +175,8 @@ class StackChart{
         fill(255)
         textAlign(LEFT,CENTER) 
         push() 
-        translate(0,this.height/2.5)
+        translate(0,-this.height+25)
+        textWrap(WORD)
         text(this.title,0,0)
         pop()
     }

@@ -53,7 +53,7 @@ class StackChartWLine{
         this.hLabel()
         this.legend()
         this.line()
-        this.name()
+        this.name() 
         pop()
     }
 
@@ -188,15 +188,14 @@ class StackChartWLine{
         fill(255)
         textAlign(LEFT,CENTER) 
         push() 
-        translate(0,this.height/2)
+        translate(0,-this.height+30)
         text(this.title,0,0)
         pop()
     }
 
     scaler(_num){
         return map(_num,0,this.max,0,this.height)
-        // let scaleVal = this.max/this.height
-        // return _num/scaleVal	
+       
     }
         
 }

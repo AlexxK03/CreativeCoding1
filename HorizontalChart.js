@@ -134,7 +134,7 @@ class HorizontalChart{
         fill(255)
         textAlign(LEFT,CENTER) 
         push() 
-        translate(0,this.height/4)
+        translate(0,-this.height-15)
         text(this.title,0,0)
         pop()
     }

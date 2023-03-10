@@ -96,6 +96,7 @@ class BarChart{
     }
 
     //calculating the max number by looping thorugh the the tables rows and using an if statement getting the the numbers from the column stated in the construtor and if that number was bigger than "maxi" than setting this as the max number. 
+    
     maxC(){
         let maxi =0;
         for(let x = 0; x<this.data.getRowCount(); x++){
@@ -143,7 +144,7 @@ class BarChart{
         fill(255)
         textAlign(LEFT,CENTER) 
         push() 
-        translate(0,this.height/4)
+        translate(0,-this.height-25)
         text(this.title,0,0)
         pop()
     }

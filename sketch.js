@@ -5,6 +5,8 @@ let palette = ["#D86D3C","#E8773D","#F0B941","#4DC0A7","#68F1F1"]
 
 function preload(){
     table = loadTable('data/MasterData.csv', 'csv', 'header');
+    irish = loadTable('data/irishLanguage.csv','csv','header')
+    disability = loadTable('data/disabilities.csv','csv','header')
 }
 
 function tidy(){
@@ -16,7 +18,7 @@ function tidy(){
 
 
 function setup(){
-    createCanvas(900, 1300)
+    createCanvas(900, 1700)
     background(0)
     angleMode(DEGREES)
     tidy()
@@ -48,9 +50,10 @@ function setup(){
         _width:300,
         _posX:50,
         _posY:775,
-        _data:table,
-        _valueX:"Year",
-        _valueY:["Motorway","Single"],
+        _title:"population over 15 in 2011 & 2016 sorted by disability",    
+        _data:disability,
+        _valueX:"Disability Type",
+        _valueY:["2011","2016"],  
         _valueT:"total",
         _tickCount:10,
         _showLabels:1,}))    
@@ -68,9 +71,11 @@ function setup(){
         _showLabels:1}))    
 
     charts.push(new StackChartWLine({
-         _data:table,
-        _valueX:"Year",
-        _valueY:["Motorway","Single"],
+        _posX:475,
+        _data:disability,
+        _title:"population over 15 in 2011 & 2016 sorted by disability",
+        _valueX:"Disability Type",
+        _valueY:["2011","2016"],
         _valueT:"total",
         _valueM:"mean"})) 
     
